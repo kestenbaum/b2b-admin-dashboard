@@ -20,5 +20,7 @@ export async function getProducts(): Promise<Product[]> {
 
     if (!res.ok) throw new Error("Failed to fetch products");
 
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     return res.json();
 }
