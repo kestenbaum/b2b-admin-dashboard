@@ -1,3 +1,6 @@
+import { apiFetch } from "@/lib/api/client";
+
+
 export interface Product {
     id: number;
     title: string;
@@ -8,19 +11,7 @@ export interface Product {
 }
 
 export async function getProducts(): Promise<Product[]> {
-    const baseUrl = process.env.API_BASE_URL;
-
-    if (!baseUrl) {
-        throw new Error("API_BASE_URL is not defined in environment variables");
-    }
-
-    const res = await fetch(`${baseUrl}/products`, {
+    return apiFetch<Product[]>("/products", {
         next: { revalidate: 3600 },
     });
-
-    if (!res.ok) throw new Error("Failed to fetch products");
-
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    return res.json();
 }

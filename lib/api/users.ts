@@ -1,3 +1,5 @@
+import { apiFetch } from "@/lib/api/client";
+
 export interface User {
     id: number;
     email: string;
@@ -10,18 +12,7 @@ export interface User {
 }
 
 export async function getUsers(): Promise<User[]> {
-    const baseUrl = process.env.API_BASE_URL;
-
-    if (!baseUrl) {
-        throw new Error("API_BASE_URL is not defined in environment variables");
-    }
-
-    // Тянем юзеров с кэшированием
-    const res = await fetch(`${baseUrl}/users`, {
-        next: { revalidate: 3600 },
+    return apiFetch<User[]>("/users", {
+        cache: "no-cache",
     });
-
-    if (!res.ok) throw new Error("Failed to fetch users");
-
-    return res.json();
 }
