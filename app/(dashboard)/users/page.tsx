@@ -9,6 +9,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { getUsers } from "@/lib/api/users";
 
+export const dynamic = "force-dynamic";
+
 export default async function UsersPage() {
     const users = await getUsers();
 
