@@ -1,0 +1,66 @@
+"use client";
+
+import { useTransition } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { getPaginationRange, buildPageHref } from "@/lib/pagination";
+import {
+    Pagination,
+    PaginationLink,
+    PaginationEllipsis,
+    ChevronLeft,
+    ChevronRight,
+} from "@/components/ui/pagination";
+
+export function PaginationControls({currentPage, totalPages,}: {
+    currentPage: number;
+    totalPages: number;
+}) {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const [isPending, startTransition] = useTransition();
+
+    if (totalPages <= 1) return null;
+
+    const range = getPaginationRange({ currentPage, totalPages, siblingCount: 1 });
+
+    const go = (page: number) => {
+        const href = buildPageHref(pathname, searchParams, page);
+        startTransition(() => router.push(href));
+    };
+
+    return (
+        <Pagination aria-busy={isPending} className={isPending ? "opacity-70" : undefined}>
+            <PaginationLink
+                href={buildPageHref(pathname, searchParams, currentPage - 1)}
+                disabled={currentPage === 1}
+                ariaLabel="Предыдущая страница"
+            >
+                <ChevronLeft className="h-4 w-4" />
+            </PaginationLink>
+
+            {range.map((item, i) =>
+                item === "ellipsis" ? (
+                    <PaginationEllipsis key={`ellipsis-${i}`} />
+                ) : (
+                    <PaginationLink
+                        key={item}
+                        href={buildPageHref(pathname, searchParams, item)}
+                        active={item === currentPage}
+                        ariaLabel={`Страница ${item}`}
+                    >
+                        {item}
+                    </PaginationLink>
+                )
+            )}
+
+            <PaginationLink
+                href={buildPageHref(pathname, searchParams, currentPage + 1)}
+                disabled={currentPage === totalPages}
+                ariaLabel="Следующая страница"
+            >
+                <ChevronRight className="h-4 w-4" />
+            </PaginationLink>
+        </Pagination>
+    );
+}

@@ -8,11 +8,26 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { getProducts } from "@/lib/api/products";
+import { clampPage } from "@/lib/pagination";
+import { PaginationControls } from "@/components/pagination-controls";
 
 export const dynamic = "force-dynamic";
 
-export default async function ProductsPage() {
-    const products = await getProducts();
+const PAGE_SIZE = 10;
+
+export default async function ProductsPage({searchParams,}: {
+    searchParams: Promise<{ page?: string }>;
+}) {
+    const { page } = await searchParams;
+    const requestedPage = Number(page ?? 1);
+
+    const { products, total } = await getProducts({
+        page: requestedPage,
+        limit: PAGE_SIZE,
+    });
+
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    const currentPage = clampPage(requestedPage, totalPages);
 
     return (
         <div className="space-y-6">
@@ -53,6 +68,8 @@ export default async function ProductsPage() {
                     </TableBody>
                 </Table>
             </div>
+
+            <PaginationControls currentPage={currentPage} totalPages={totalPages} />
         </div>
     );
 }

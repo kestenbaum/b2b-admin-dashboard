@@ -8,11 +8,27 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { getUsers } from "@/lib/api/users";
+import { clampPage } from "@/lib/pagination";
+import { PaginationControls } from "@/components/pagination-controls";
 
 export const dynamic = "force-dynamic";
 
-export default async function UsersPage() {
-    const users = await getUsers();
+const PAGE_SIZE = 10;
+
+export default async function UsersPage({searchParams,}: {
+    searchParams: Promise<{ page?: string }>;
+}) {
+
+    const { page } = await searchParams;
+    const requestedPage = Number(page ?? 1);
+
+    const { users, total } = await getUsers({
+        page: requestedPage,
+        limit: PAGE_SIZE
+    });
+
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    const currentPage = clampPage(requestedPage, totalPages);
 
     return (
         <div className="space-y-6">
@@ -39,7 +55,7 @@ export default async function UsersPage() {
                                     #{user.id}
                                 </TableCell>
                                 <TableCell className="font-medium capitalize">
-                                    {user.name.firstname} {user.name.lastname}
+                                    {user.firstName} {user.lastName}
                                 </TableCell>
                                 <TableCell>
                                     <Badge variant="outline" className="text-xs">
@@ -57,6 +73,7 @@ export default async function UsersPage() {
                     </TableBody>
                 </Table>
             </div>
+            <PaginationControls currentPage={currentPage} totalPages={totalPages} />
         </div>
     );
 }
