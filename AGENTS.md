@@ -1,5 +1,50 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# AGENTS.md
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+## О проекте
+B2B admin dashboard (TradeMinds). Next.js App Router + TypeScript.
+
+## Стек
+- Next.js (App Router, не Pages Router)
+- TypeScript strict mode
+- Tailwind CSS + shadcn/ui (компоненты в components/ui — не менять их напрямую,
+  если нужно кастомизировать — оборачивать, а не редактировать сгенерированный файл)
+- State: Zustand (не Redux)
+- Backend: NestJS, PostgreSQL
+
+## Структура проекта
+- app/(dashboard)/... — страницы дашборда, каждая фича в своей папке (products, users)
+- components/ui — базовые shadcn-компоненты (button, card, table и т.д.)
+- lib/api — слой запросов к бэкенду, один файл на сущность (products.ts, users.ts)
+- lib/pagination.ts — общая логика пагинации, переиспользуется везде
+
+## Конвенции
+- Компоненты — функциональные, PascalCase, экспорт по умолчанию
+- Файлы данных/типов — camelCase
+- Пагинация: всегда через clampPage() из lib/pagination.ts, не писать логику
+  границ вручную в компонентах
+- Ошибки API: обрабатывать через error.tsx boundary (Next.js convention),
+  не try/catch внутри компонента страницы
+- Стили — только Tailwind классы, инлайн-стили не используем
+
+## Что НЕ делать без явного запроса
+- Не менять файлы в components/ui напрямую
+- Не добавлять новые зависимости без объяснения зачем
+- Не переписывать существующую логику пагинации/API-слоя "для красоты"
+- Не удалять существующие тесты
+
+## Тесты
+- Тесты лежат в __tests__
+- Запуск: npm run test (уточни свою реальную команду)
+
+## Перед завершением задачи
+- Прогнать eslint / prettier перед тем как считать задачу законченной
+- Если менял типы в lib/api — проверить, что все места использования обновлены
+
+
+## Выделение компонентов
+Выносить в отдельный файл только если:
+- компонент переиспользуется в 2+ местах, ИЛИ
+- содержит собственную логику/state, ИЛИ
+- превышает ~50 строк JSX
+  Простые статические элементы (заголовки, обёртки без логики)
+  оставлять инлайн в родительском файле.
