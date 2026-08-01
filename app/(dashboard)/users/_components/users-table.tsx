@@ -19,7 +19,7 @@ export function UsersTable({ users }: UsersTableProps) {
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[80px]">ID</TableHead>
+                        <TableHead className="w-20">ID</TableHead>
                         <TableHead>Full Name</TableHead>
                         <TableHead>Username</TableHead>
                         <TableHead>Email</TableHead>
