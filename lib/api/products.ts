@@ -9,6 +9,12 @@ export interface Product {
     thumbnail: string;
 }
 
+export interface Category {
+    slug: string;
+    name: string;
+    url: string;
+}
+
 interface DummyJsonProductsResponse {
     products: Product[];
     total: number;
@@ -19,6 +25,9 @@ interface DummyJsonProductsResponse {
 export interface GetProductsParams {
     page: number;
     limit: number;
+    category?: string;
+    minPrice?: number;
+    maxPrice?: number;
 }
 
 export interface GetProductsResult {
@@ -26,13 +35,43 @@ export interface GetProductsResult {
     total: number;
 }
 
-export async function getProducts({page, limit,}: GetProductsParams): Promise<GetProductsResult> {
+export async function getProducts({
+    page,
+    limit,
+    category,
+    minPrice,
+    maxPrice,
+}: GetProductsParams): Promise<GetProductsResult> {
     const skip = (page - 1) * limit;
+    const categoryPath = category ? `/category/${category}` : "";
+    const url = `/products${categoryPath}?limit=0&skip=0`;
 
-    const data = await apiFetch<DummyJsonProductsResponse>(
-        `/products?limit=${limit}&skip=${skip}`,
-        { next: { revalidate: 3600 } }
-    );
+    const data = await apiFetch<DummyJsonProductsResponse>(url, {
+        next: { revalidate: 3600 },
+    });
 
-    return { products: data.products, total: data.total };
+    let filteredProducts = data.products;
+
+    if (minPrice) {
+        filteredProducts = filteredProducts.filter(
+            (product) => product.price >= minPrice
+        );
+    }
+
+    if (maxPrice) {
+        filteredProducts = filteredProducts.filter(
+            (product) => product.price <= maxPrice
+        );
+    }
+
+    const total = filteredProducts.length;
+    const paginatedProducts = filteredProducts.slice(skip, skip + limit);
+
+    return { products: paginatedProducts, total };
+}
+
+export async function getCategories(): Promise<Category[]> {
+    return await apiFetch<Category[]>("/products/categories", {
+        next: { revalidate: 3600 },
+    });
 }
