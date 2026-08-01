@@ -1,6 +1,5 @@
 "use client";
 
-import { useTransition } from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { getPaginationRange, buildPageHref } from "@/lib/pagination";
 import {
@@ -15,22 +14,16 @@ export function PaginationControls({currentPage, totalPages,}: {
     currentPage: number;
     totalPages: number;
 }) {
-    const router = useRouter();
+    useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const [isPending, startTransition] = useTransition();
 
     if (totalPages <= 1) return null;
 
     const range = getPaginationRange({ currentPage, totalPages, siblingCount: 1 });
 
-    const go = (page: number) => {
-        const href = buildPageHref(pathname, searchParams, page);
-        startTransition(() => router.push(href));
-    };
-
     return (
-        <Pagination aria-busy={isPending} className={isPending ? "opacity-70" : undefined}>
+        <Pagination>
             <PaginationLink
                 href={buildPageHref(pathname, searchParams, currentPage - 1)}
                 disabled={currentPage === 1}
