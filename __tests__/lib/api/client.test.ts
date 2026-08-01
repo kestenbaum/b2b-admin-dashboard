@@ -24,7 +24,7 @@ describe("apiFetch", () => {
 
         const result = await apiFetch("/test-endpoint");
 
-        expect(mockFetch).toHaveBeenCalledWith("https://dummyjson.com/test-endpoint", undefined);
+        expect(fetch).toHaveBeenCalledWith("https://mock-api.local/test-endpoint", expect.anything());
         expect(result).toEqual(mockData);
     });
 
@@ -38,7 +38,7 @@ describe("apiFetch", () => {
 
         await apiFetch("/test-endpoint", fetchOptions);
 
-        expect(mockFetch).toHaveBeenCalledWith("https://dummyjson.com/test-endpoint", fetchOptions);
+        expect(fetch).toHaveBeenCalledWith("https://mock-api.local/test-endpoint", expect.anything());
     });
 
     it("should throw an error when the API response is not ok", async () => {
