@@ -24,7 +24,7 @@ describe("apiFetch", () => {
 
         const result = await apiFetch("/test-endpoint");
 
-        expect(fetch).toHaveBeenCalledWith("https://mock-api.local/test-endpoint", expect.anything());
+        expect(fetch).toHaveBeenCalledWith("https://mock-api.local/test-endpoint", undefined);
         expect(result).toEqual(mockData);
     });
 
