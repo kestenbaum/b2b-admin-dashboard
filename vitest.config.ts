@@ -6,6 +6,9 @@ export default defineConfig({
     plugins: [react()],
     test: {
         environment: "jsdom",
+        env: {
+            API_BASE_URL: "https://mock-api.local",
+        },
         globals: true,
         setupFiles: "./vitest.setup.ts",
     },
