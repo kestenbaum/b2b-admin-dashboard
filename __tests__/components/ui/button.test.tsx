@@ -11,6 +11,6 @@ describe("UI Component: Button", () => {
 
     it("applies the destructive variant class", () => {
         render(<Button variant="destructive">Delete</Button>);
-        expect(screen.getByText("Delete")).toHaveClass("text-destructive");
+        expect(screen.getByText("Delete")).toHaveClass("bg-destructive");
     });
 });
