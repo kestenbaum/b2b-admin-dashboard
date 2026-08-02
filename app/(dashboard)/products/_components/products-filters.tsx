@@ -55,7 +55,7 @@ export function ProductsFilters({ categories }: { categories: Category[] }) {
     return (
         <form
             onSubmit={handleFiltersChange}
-            className="flex items-center space-x-4"
+            className="flex flex-col gap-4 sm:flex-row sm:items-center"
         >
             <Controller
                 name="category"
@@ -65,7 +65,7 @@ export function ProductsFilters({ categories }: { categories: Category[] }) {
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                     >
-                        <SelectTrigger className="w-[180px]">
+                        <SelectTrigger className="w-full sm:w-[180px]">
                             <SelectValue placeholder="Category" />
                         </SelectTrigger>
                         <SelectContent className="max-h-[300px] overflow-y-auto">
@@ -83,15 +83,15 @@ export function ProductsFilters({ categories }: { categories: Category[] }) {
                 {...register("minPrice")}
                 type="number"
                 placeholder="Min price"
-                className="w-30"
+                className="w-full sm:w-32"
             />
             <Input
                 {...register("maxPrice")}
                 type="number"
                 placeholder="Max price"
-                className="w-30"
+                className="w-full sm:w-32"
             />
-            <Button type="submit">Apply</Button>
+            <Button type="submit" className="w-full sm:w-auto">Apply</Button>
         </form>
     );
 }

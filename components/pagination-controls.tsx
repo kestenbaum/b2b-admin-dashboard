@@ -23,7 +23,7 @@ export function PaginationControls({currentPage, totalPages,}: {
     const range = getPaginationRange({ currentPage, totalPages, siblingCount: 1 });
 
     return (
-        <Pagination>
+        <Pagination className="flex-wrap justify-start sm:justify-center">
             <PaginationLink
                 href={buildPageHref(pathname, searchParams, currentPage - 1)}
                 disabled={currentPage === 1}

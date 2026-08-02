@@ -64,38 +64,38 @@ export default function UsersTable({ users }: UsersTableProps) {
                 <Input
                     placeholder="Search by name..."
                     {...register("q")}
-                    className="max-w-sm"
+                    className="w-full sm:max-w-sm"
                 />
             </div>
-            <div className="rounded-md border bg-card">
+            <div className="w-full overflow-x-auto rounded-md border bg-card">
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-20">ID</TableHead>
-                            <TableHead>Full Name</TableHead>
-                            <TableHead>Username</TableHead>
-                            <TableHead>Email</TableHead>
-                            <TableHead className="text-right">Phone</TableHead>
+                            <TableHead className="w-20 p-2 sm:p-4">ID</TableHead>
+                            <TableHead className="p-2 sm:p-4">Full Name</TableHead>
+                            <TableHead className="hidden p-2 sm:table-cell sm:p-4">Username</TableHead>
+                            <TableHead className="hidden p-2 md:table-cell md:p-4">Email</TableHead>
+                            <TableHead className="p-2 text-right sm:p-4">Phone</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {users.map((user) => (
                             <TableRow key={user.id}>
-                                <TableCell className="font-medium text-muted-foreground">
+                                <TableCell className="p-2 font-medium text-muted-foreground sm:p-4">
                                     #{user.id}
                                 </TableCell>
-                                <TableCell className="font-medium capitalize">
+                                <TableCell className="p-2 font-medium capitalize sm:p-4">
                                     {user.firstName} {user.lastName}
                                 </TableCell>
-                                <TableCell>
+                                <TableCell className="hidden p-2 sm:table-cell sm:p-4">
                                     <Badge variant="outline" className="text-xs">
                                         @{user.username}
                                     </Badge>
                                 </TableCell>
-                                <TableCell className="text-muted-foreground">
+                                <TableCell className="hidden p-2 text-muted-foreground md:table-cell md:p-4">
                                     {user.email}
                                 </TableCell>
-                                <TableCell className="text-right font-medium">
+                                <TableCell className="p-2 text-right font-medium sm:p-4">
                                     {user.phone}
                                 </TableCell>
                             </TableRow>
