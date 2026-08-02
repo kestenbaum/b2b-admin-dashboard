@@ -115,7 +115,3 @@ The project uses the following development dependencies:
 
 ## Live Version
 * https://b2b-admin-dashboard-drab.vercel.app/
-*   `jsdom`
-*   `tailwindcss`
-*   `typescript`
-*   `vitest`
