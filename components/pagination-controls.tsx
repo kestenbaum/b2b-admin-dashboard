@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import { getPaginationRange, buildPageHref } from "@/lib/pagination";
 import {
     Pagination,

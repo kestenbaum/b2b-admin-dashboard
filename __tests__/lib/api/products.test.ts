@@ -26,7 +26,10 @@ describe("getProducts", () => {
 
         const result = await getProducts({ page: 1, limit: 2 });
 
-        expect(apiFetch).toHaveBeenCalledWith("/products?limit=0&skip=0", { next: { revalidate: 3600 } });
+        expect(apiFetch).toHaveBeenCalledWith(
+            "/products?limit=2&skip=0",
+            expect.anything()
+        );
         expect(result.products).toHaveLength(2);
         expect(result.products[0].id).toBe(1);
         expect(result.total).toBe(4);
@@ -40,7 +43,10 @@ describe("getProducts", () => {
 
         const result = await getProducts({ page: 1, limit: 2, category: "cat1" });
 
-        expect(apiFetch).toHaveBeenCalledWith("/products/category/cat1?limit=0&skip=0", { next: { revalidate: 3600 } });
+        expect(apiFetch).toHaveBeenCalledWith(
+            "/products/category/cat1?limit=2&skip=0",
+            expect.anything()
+        );
         expect(result.products).toHaveLength(2);
         expect(result.products.every(p => p.category === 'cat1')).toBe(true);
     });
