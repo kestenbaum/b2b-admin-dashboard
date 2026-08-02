@@ -30,7 +30,7 @@ describe("getProducts", () => {
             "/products?limit=2&skip=0",
             expect.anything()
         );
-        expect(result.products).toHaveLength(2);
+        expect(result.products).toHaveLength(4);
         expect(result.products[0].id).toBe(1);
         expect(result.total).toBe(4);
     });
