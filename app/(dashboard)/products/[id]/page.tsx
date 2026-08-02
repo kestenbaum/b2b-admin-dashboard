@@ -6,13 +6,11 @@ import { Badge } from "@/components/ui/badge";
 import { Star, Package } from "lucide-react";
 import Link from "next/link";
 
-interface ProductDetailPageProps {
-    params: {
-        id: string;
-    };
+interface ProductPageProps {
+    params: Promise<{ id: string }>;
 }
 
-export default async function ProductDetailPage({ params }: ProductDetailPageProps) {
+export default async function ProductDetailPage({ params }: ProductPageProps) {
     const { id } = await params;
     const product = await getProductById(id);
 

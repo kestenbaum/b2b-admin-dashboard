@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getProducts, getCategories } from "@/lib/api/products";
+import { getProducts, getCategories, deleteProduct, getProductById } from "@/lib/api/products";
 import { apiFetch } from "@/lib/api/client";
 
 vi.mock("@/lib/api/client", () => ({
@@ -80,5 +80,51 @@ describe("getCategories", () => {
 
         expect(apiFetch).toHaveBeenCalledWith("/products/categories", { next: { revalidate: 3600 } });
         expect(result).toEqual(mockCategories);
+    });
+});
+
+describe("Products API: getProductById & deleteProduct", () => {
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
+
+    describe("getProductById", () => {
+        it("should successfully fetch and return a product by id", async () => {
+            const mockProduct = { id: 1, title: "Test Product", price: 99.99, category: "test", description: "desc", thumbnail: "url" };
+            vi.mocked(apiFetch).mockResolvedValueOnce(mockProduct);
+
+            const result = await getProductById(1);
+
+            expect(apiFetch).toHaveBeenCalledWith("/products/1", { next: { revalidate: 3600 } });
+            expect(result).toEqual(mockProduct);
+        });
+
+        it("should catch error and return null when product is not found or request fails", async () => {
+            vi.mocked(apiFetch).mockRejectedValueOnce(new Error("API Error"));
+
+            const result = await getProductById(999);
+
+            expect(apiFetch).toHaveBeenCalledWith("/products/999", { next: { revalidate: 3600 } });
+            expect(result).toBeNull();
+        });
+    });
+
+    describe("deleteProduct", () => {
+        it("should execute DELETE request with correct method", async () => {
+            const mockDeletedResponse = { id: 1, isDeleted: true };
+            vi.mocked(apiFetch).mockResolvedValueOnce(mockDeletedResponse);
+
+            const result = await deleteProduct(1);
+
+            expect(apiFetch).toHaveBeenCalledWith("/products/1", { method: "DELETE" });
+            expect(result).toEqual(mockDeletedResponse);
+        });
+
+        it("should throw error when deletion fails", async () => {
+            const mockError = new Error("Failed to delete");
+            vi.mocked(apiFetch).mockRejectedValueOnce(mockError);
+
+            await expect(deleteProduct(1)).rejects.toThrow("Failed to delete");
+        });
     });
 });
