@@ -10,7 +10,7 @@ import {
     SheetClose,
 } from "@/components/ui/sheet";
 
-import { DesktopNav, MobileNav } from "@/components/dashboard-nav";
+import { DesktopNav, MobileNav } from "@/components/dashboard/dashboard-nav";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
     return (

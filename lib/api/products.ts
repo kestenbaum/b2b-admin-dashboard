@@ -7,6 +7,8 @@ export interface Product {
     category: string;
     description: string;
     thumbnail: string;
+    rating?: number;
+    discountPercentage?: number;
 }
 
 export interface Category {
