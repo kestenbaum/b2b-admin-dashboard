@@ -8,7 +8,6 @@ This is a B2B admin dashboard project named TradeMinds, built with Next.js App R
 *   **TypeScript**: Strict mode is enabled for enhanced code quality and type safety.
 *   **Tailwind CSS + shadcn/ui**: For styling and UI components. Note: Do not directly modify files in `components/ui`. Wrap them for customization if needed.
 *   **State Management**: Zustand (not Redux) is used for managing application state.
-*   **Backend**: Interacts with a NestJS backend and PostgreSQL database.
 
 ## Project Structure
 
