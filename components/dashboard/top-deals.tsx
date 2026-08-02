@@ -11,7 +11,7 @@ export function TopDeals({ products }: TopDealsProps) {
         .slice(0, 5);
 
     return (
-        <Card className="h-full">
+        <Card className="h-full w-full">
             <CardHeader>
                 <CardTitle className="text-lg">Top Deals</CardTitle>
             </CardHeader>

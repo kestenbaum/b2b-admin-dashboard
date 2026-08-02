@@ -23,7 +23,7 @@ export default async function DashboardOverview() {
         <div className="space-y-6">
             <PageHeader title="Dashboard" description="Overview of your store's performance." />
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                         <CardTitle className="text-sm font-medium">Total Users</CardTitle>
@@ -68,7 +68,7 @@ export default async function DashboardOverview() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 mt-4">
-                <div className="col-span-4 border rounded-xl bg-card min-h-87.5 p-6 flex items-center justify-center text-muted-foreground">
+                <div>
                    graph
                 </div>
                 <div className="col-span-3">
