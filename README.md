@@ -112,6 +112,9 @@ The project uses the following development dependencies:
 *   `@vitejs/plugin-react`
 *   `eslint`
 *   `eslint-config-next`
+
+## Live Version
+* https://b2b-admin-dashboard-drab.vercel.app/
 *   `jsdom`
 *   `tailwindcss`
 *   `typescript`
