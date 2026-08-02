@@ -19,6 +19,7 @@ interface DummyJsonUsersResponse {
 export interface GetUsersParams {
     page: number;
     limit: number;
+    q?: string;
 }
 
 export interface GetUsersResult {
@@ -26,11 +27,23 @@ export interface GetUsersResult {
     total: number;
 }
 
-export async function getUsers({ page, limit }: GetUsersParams): Promise<GetUsersResult> {
+export async function getUsers({ page, limit, q }: GetUsersParams): Promise<GetUsersResult> {
     const skip = (page - 1) * limit;
 
+    const params = new URLSearchParams({
+        limit: String(limit),
+        skip: String(skip),
+    });
+
+    const endpoint = q ? '/users/search' : '/users';
+    if (q) {
+        params.set('q', q);
+    }
+
+    const url = `${endpoint}?${params.toString()}`;
+
     const data = await apiFetch<DummyJsonUsersResponse>(
-        `/users?limit=${limit}&skip=${skip}`,
+        url,
         { cache: "no-store" }
     );
 
