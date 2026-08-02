@@ -9,6 +9,11 @@ export interface Product {
     thumbnail: string;
     rating?: number;
     discountPercentage?: number;
+    brand?: string;
+    images?: string[];
+    stock?: number;
+    weight?: number;
+    sku?: string;
 }
 
 export interface Category {
@@ -106,4 +111,26 @@ export async function getMostExpensiveProduct(): Promise<Product | null> {
     });
 
     return mostExpensive;
+}
+
+export async function getProductById(id: string | number): Promise<Product | null> {
+    try {
+        const res = await fetch(`https://dummyjson.com/products/${id}`, {
+            next: { revalidate: 3600 }
+        });
+
+        if (!res.ok) {
+            if (res.status === 404) {
+                return null;
+            }
+            throw new Error(`Failed to fetch product ${id}. Status: ${res.status}`);
+        }
+
+        const data: Product = await res.json();
+        return data;
+
+    } catch (error) {
+        console.error(`Error in getProductById for ID ${id}:`, error);
+        return null;
+    }
 }

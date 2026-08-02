@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Product } from "@/lib/api/products";
+import Link from "next/link";
 
 interface ProductsTableProps {
   products: Product[];
@@ -31,25 +32,27 @@ export function ProductsTable({ products }: ProductsTableProps) {
         </TableHeader>
         <TableBody>
           {products.map((product) => (
-            <TableRow key={product.id}>
-              <TableCell className="p-2 text-sm font-medium text-muted-foreground sm:p-4">
-                #{product.id}
-              </TableCell>
-              <TableCell className="truncate p-2 text-sm font-medium sm:p-4">
-                {product.title}
-              </TableCell>
-              <TableCell className="hidden p-2 sm:table-cell sm:p-4">
-                <Badge
-                  variant="secondary"
-                  className="whitespace-nowrap capitalize"
-                >
-                  {product.category}
-                </Badge>
-              </TableCell>
-              <TableCell className="p-2 text-right text-sm font-medium sm:p-4">
-                ${product.price.toFixed(2)}
-              </TableCell>
-            </TableRow>
+              <TableRow key={product.id}>
+                <TableCell className="p-2 text-sm font-medium text-muted-foreground sm:p-4">
+                  #{product.id}
+                </TableCell>
+                <TableCell className="truncate p-2 text-sm font-medium sm:p-4">
+                  <Link
+                      href={`/products/${product.id}`}
+                      className="hover:underline hover:text-primary transition-colors"
+                  >
+                    {product.title}
+                  </Link>
+                </TableCell>
+                <TableCell className="hidden p-2 sm:table-cell sm:p-4">
+                  <Badge variant="secondary" className="whitespace-nowrap capitalize">
+                    {product.category}
+                  </Badge>
+                </TableCell>
+                <TableCell className="p-2 text-right text-sm font-medium sm:p-4">
+                  ${product.price.toFixed(2)}
+                </TableCell>
+              </TableRow>
           ))}
         </TableBody>
       </Table>
