@@ -4,6 +4,7 @@ import { getUsers } from "@/lib/api/users";
 import { getProducts, getMostExpensiveProduct } from "@/lib/api/products";
 import { Users, Package, Star, Tags } from "lucide-react";
 import { TopDeals } from "@/components/dashboard/top-deals";
+import { OverviewChart } from "@/components/dashboard/overview-chart";
 
 export default async function DashboardOverview() {
     const [usersData, productsData, mostExpensiveProduct] = await Promise.all([
@@ -68,10 +69,10 @@ export default async function DashboardOverview() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 mt-4">
-                <div>
-                   graph
+                <div className="col-span-1 lg:col-span-4">
+                    <OverviewChart products={productsData.products} />
                 </div>
-                <div className="col-span-3">
+                <div className="col-span-1 lg:col-span-3">
                     <TopDeals products={productsData.products} />
                 </div>
             </div>
