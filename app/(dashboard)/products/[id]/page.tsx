@@ -41,11 +41,13 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                 <div className="space-y-4">
                     <Card className="overflow-hidden">
                         <CardContent className="p-0 flex justify-center bg-white">
-                            <img
+                            {
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
                                 src={product.thumbnail}
                                 alt={product.title}
                                 className="h-100 w-full object-contain"
-                            />
+                            />}
                         </CardContent>
                     </Card>
 

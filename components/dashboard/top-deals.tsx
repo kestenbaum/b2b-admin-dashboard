@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Product } from "@/lib/api/products";
+import Image from "next/image";
 
 interface TopDealsProps {
     products: Product[];
@@ -21,6 +22,7 @@ export function TopDeals({ products }: TopDealsProps) {
                         <div className="flex items-center space-x-4">
                             <div className="relative h-10 w-10 overflow-hidden rounded-full border bg-muted">
                                 {product.thumbnail ? (
+                                    // eslint-disable-next-line @net/next/no-img-element
                                     <img
                                         src={product.thumbnail}
                                         alt={product.title}

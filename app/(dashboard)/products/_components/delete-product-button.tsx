@@ -39,7 +39,7 @@ export function DeleteProductButton({
             if (redirectAfterDelete) {
                 router.push("/products")
             }
-        } catch (error) {
+        } catch {
             toast({
                 title: "Error",
                 description: "Failed to delete product.",

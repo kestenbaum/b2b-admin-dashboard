@@ -218,6 +218,17 @@ function Toaster({
 const createToastManager = ToastPrimitive.createToastManager
 const useToastManager = ToastPrimitive.useToastManager
 
+ToastProvider.displayName = "ToastProvider"
+ToastPortal.displayName = "ToastPortal"
+ToastViewport.displayName = "ToastViewport"
+Toast.displayName = "Toast"
+ToastContent.displayName = "ToastContent"
+ToastTitle.displayName = "ToastTitle"
+ToastDescription.displayName = "ToastDescription"
+ToastAction.displayName = "ToastAction"
+ToastClose.displayName = "ToastClose"
+ToastList.displayName = "ToastList"
+
 export {
   Toaster,
   Toast,
