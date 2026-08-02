@@ -68,7 +68,7 @@ export function ProductsFilters({ categories }: { categories: Category[] }) {
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="Category" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="max-h-[300px] overflow-y-auto">
                             <SelectItem value="all">All Categories</SelectItem>
                             {uniqueCategories.map((cat) => (
                                 <SelectItem key={cat.slug} value={cat.slug}>
