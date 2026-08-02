@@ -44,34 +44,64 @@ export async function getProducts({
 }: GetProductsParams): Promise<GetProductsResult> {
     const skip = (page - 1) * limit;
     const categoryPath = category ? `/category/${category}` : "";
-    const url = `/products${categoryPath}?limit=0&skip=0`;
+    const params = new URLSearchParams();
+
+    let shouldFilterClientSide = false;
+
+    if (minPrice || maxPrice) {
+        params.set("limit", "0");
+        params.set("skip", "0");
+        shouldFilterClientSide = true;
+    } else {
+        params.set("limit", String(limit));
+        params.set("skip", String(skip));
+    }
+
+    const url = `/products${categoryPath}?${params.toString()}`;
 
     const data = await apiFetch<DummyJsonProductsResponse>(url, {
         next: { revalidate: 3600 },
     });
 
-    let filteredProducts = data.products;
+    if (shouldFilterClientSide) {
+        let filteredProducts = data.products;
 
-    if (minPrice) {
-        filteredProducts = filteredProducts.filter(
-            (product) => product.price >= minPrice
-        );
+        if (minPrice) {
+            filteredProducts = filteredProducts.filter(
+                (product) => product.price >= minPrice
+            );
+        }
+
+        if (maxPrice) {
+            filteredProducts = filteredProducts.filter(
+                (product) => product.price <= maxPrice
+            );
+        }
+
+        const total = filteredProducts.length;
+        const paginatedProducts = filteredProducts.slice(skip, skip + limit);
+
+        return { products: paginatedProducts, total };
+    } else {
+        return { products: data.products, total: data.total };
     }
-
-    if (maxPrice) {
-        filteredProducts = filteredProducts.filter(
-            (product) => product.price <= maxPrice
-        );
-    }
-
-    const total = filteredProducts.length;
-    const paginatedProducts = filteredProducts.slice(skip, skip + limit);
-
-    return { products: paginatedProducts, total };
 }
 
 export async function getCategories(): Promise<Category[]> {
     return await apiFetch<Category[]>("/products/categories", {
         next: { revalidate: 3600 },
     });
+}
+
+export async function getMostExpensiveProduct(): Promise<Product | null> {
+    const { products } = await getProducts({ page: 1, limit: 0 }); // Fetch all products
+    if (products.length === 0) {
+        return null;
+    }
+
+    const mostExpensive = products.reduce((prev, current) => {
+        return (prev.price > current.price) ? prev : current;
+    });
+
+    return mostExpensive;
 }

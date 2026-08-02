@@ -5,6 +5,7 @@ import { ProductsTable } from "@/app/(dashboard)/products/_components/products-t
 import React from "react";
 import { PageHeader } from "@/components/page-header";
 import { ProductsFilters } from "@/app/(dashboard)/products/_components/products-filters";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
@@ -36,6 +37,21 @@ export default async function ProductsPage({searchParams,}: {
 
     const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
     const currentPage = clampPage(requestedPage, totalPages);
+
+    if (requestedPage !== currentPage) {
+        const newSearchParams = new URLSearchParams();
+        if (category) {
+            newSearchParams.set("category", category);
+        }
+        if (minPrice) {
+            newSearchParams.set("minPrice", minPrice);
+        }
+        if (maxPrice) {
+            newSearchParams.set("maxPrice", maxPrice);
+        }
+        newSearchParams.set("page", currentPage.toString());
+        redirect(`/products?${newSearchParams.toString()}`);
+    }
 
     return (
         <section className="space-y-6">

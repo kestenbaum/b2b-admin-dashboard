@@ -14,7 +14,6 @@ export function PaginationControls({currentPage, totalPages,}: {
     currentPage: number;
     totalPages: number;
 }) {
-    useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
