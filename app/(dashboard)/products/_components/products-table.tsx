@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Product } from "@/lib/api/products";
+
 import Link from "next/link";
 import { DeleteProductButton } from "@/app/(dashboard)/products/_components/delete-product-button";
 
@@ -18,37 +19,35 @@ interface ProductsTableProps {
   products: Product[];
 }
 
-export function ProductsTable({ products: initialProducts }: ProductsTableProps) {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
-
-  useEffect(() => {
-    setProducts(initialProducts);
-  }, [initialProducts]);
+export function ProductsTable({ products }: ProductsTableProps) {
+  const [deletedIds, setDeletedIds] = useState<number[]>([]);
 
   const handleRemoveProduct = (id: number | string) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
+    setDeletedIds((prev) => [...prev, Number(id)]);
   };
+
+  const visibleProducts = products.filter((p) => !deletedIds.includes(Number(p.id)));
 
   return (
       <div className="w-full overflow-x-auto rounded-md border bg-card">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[80px] p-2 sm:p-4">ID</TableHead>
-              <TableHead className="min-w-[150px] p-2 sm:p-4">Title</TableHead>
+              <TableHead className="w-20 p-2 sm:p-4">ID</TableHead>
+              <TableHead className="min-w-37.5 p-2 sm:p-4">Title</TableHead>
               <TableHead className="hidden p-2 sm:table-cell sm:p-4">
                 Category
               </TableHead>
               <TableHead className="p-2 text-right sm:p-4">
                 Price
               </TableHead>
-              <TableHead className="p-2 text-right sm:p-4 w-[80px]">
+              <TableHead className="p-2 text-right sm:p-4 w-20">
                 Actions
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {products.map((product) => (
+            {visibleProducts.map((product) => (
                 <TableRow key={product.id}>
                   <TableCell className="p-2 text-sm font-medium text-muted-foreground sm:p-4">
                     #{product.id}

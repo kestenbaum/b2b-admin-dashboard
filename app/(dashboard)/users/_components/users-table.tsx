@@ -37,6 +37,7 @@ export default function UsersTable({ users }: UsersTableProps) {
         },
     });
 
+    // eslint-disable-next-line react-hooks/incompatible-library
     const watchedQuery = watch("q");
     const debouncedQuery = useDebounce(watchedQuery, 500);
 

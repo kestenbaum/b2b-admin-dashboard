@@ -55,11 +55,12 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
                         <div className="flex gap-4 overflow-x-auto pb-2">
                             {product.images.map((img, idx) => (
                                 <div key={idx} className="h-24 w-24 shrink-0 border rounded-md overflow-hidden bg-white">
+                                    {// eslint-disable-next-line @next/next/no-img-element
                                     <img
                                         src={img}
                                         alt={`${product.title} ${idx}`}
                                         className="h-full w-full object-contain"
-                                    />
+                                    />}
                                 </div>
                             ))}
                         </div>
