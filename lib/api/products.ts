@@ -43,12 +43,12 @@ export interface GetProductsResult {
 }
 
 export async function getProducts({
-    page,
-    limit,
-    category,
-    minPrice,
-    maxPrice,
-}: GetProductsParams): Promise<GetProductsResult> {
+                                      page,
+                                      limit,
+                                      category,
+                                      minPrice,
+                                      maxPrice,
+                                  }: GetProductsParams): Promise<GetProductsResult> {
     const skip = (page - 1) * limit;
     const categoryPath = category ? `/category/${category}` : "";
     const params = new URLSearchParams();
@@ -101,7 +101,7 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 export async function getMostExpensiveProduct(): Promise<Product | null> {
-    const { products } = await getProducts({ page: 1, limit: 0 }); // Fetch all products
+    const { products } = await getProducts({ page: 1, limit: 0 });
     if (products.length === 0) {
         return null;
     }
@@ -115,20 +115,10 @@ export async function getMostExpensiveProduct(): Promise<Product | null> {
 
 export async function getProductById(id: string | number): Promise<Product | null> {
     try {
-        const res = await fetch(`https://dummyjson.com/products/${id}`, {
+        const data = await apiFetch<Product>(`/products/${id}`, {
             next: { revalidate: 3600 }
         });
-
-        if (!res.ok) {
-            if (res.status === 404) {
-                return null;
-            }
-            throw new Error(`Failed to fetch product ${id}. Status: ${res.status}`);
-        }
-
-        const data: Product = await res.json();
         return data;
-
     } catch (error) {
         console.error(`Error in getProductById for ID ${id}:`, error);
         return null;
@@ -137,15 +127,9 @@ export async function getProductById(id: string | number): Promise<Product | nul
 
 export async function deleteProduct(id: string | number) {
     try {
-        const res = await fetch(`https://dummyjson.com/products/${id}`, {
+        const data = await apiFetch(`/products/${id}`, {
             method: 'DELETE',
         });
-
-        if (!res.ok) {
-            throw new Error(`Failed to delete product ${id}`);
-        }
-
-        const data = await res.json();
         return data;
     } catch (error) {
         console.error("Error deleting product:", error);

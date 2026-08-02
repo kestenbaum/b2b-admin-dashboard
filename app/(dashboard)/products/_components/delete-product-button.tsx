@@ -1,52 +1,40 @@
 "use client"
 
-import { useState } from "react"
+import { useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import { Trash2, Loader2 } from "lucide-react"
-import { deleteProduct } from "@/lib/api/products"
-import { useRouter } from "next/navigation"
+
+import { deleteProductAction } from "@/app/(dashboard)/products/actions"
 import { toast } from "@/lib/hooks/use-toast";
 
 interface DeleteProductButtonProps {
     id: number | string
-    redirectAfterDelete?: boolean
     onSuccess?: () => void
 }
 
 export function DeleteProductButton({
                                         id,
-                                        redirectAfterDelete = false,
                                         onSuccess
                                     }: DeleteProductButtonProps) {
-    const [isLoading, setIsLoading] = useState(false)
-    const router = useRouter()
+    const [isPending, startTransition] = useTransition()
 
-    const handleDelete = async () => {
-        try {
-            setIsLoading(true)
+    const handleDelete = () => {
+        startTransition(async () => {
+            const result = await deleteProductAction(id)
 
-            await deleteProduct(id)
-
-            toast({
-                title: "Success",
-                description: `Product #${id} has been successfully deleted.`,
-            })
-
-            if (onSuccess) {
-                onSuccess()
+            if (result.success) {
+                toast({
+                    title: "Success",
+                    description: `Product #${id} has been successfully deleted.`,
+                })
+                onSuccess?.()
+            } else {
+                toast({
+                    title: "Error",
+                    description: result.error || "Failed to delete product.",
+                })
             }
-
-            if (redirectAfterDelete) {
-                router.push("/products")
-            }
-        } catch {
-            toast({
-                title: "Error",
-                description: "Failed to delete product.",
-            })
-        } finally {
-            setIsLoading(false)
-        }
+        })
     }
 
     return (
@@ -54,10 +42,10 @@ export function DeleteProductButton({
             variant="ghost"
             size="icon"
             onClick={handleDelete}
-            disabled={isLoading}
+            disabled={isPending}
             className="text-muted-foreground hover:text-destructive transition-colors"
         >
-            {isLoading ? (
+            {isPending ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
                 <Trash2 className="h-4 w-4" />
