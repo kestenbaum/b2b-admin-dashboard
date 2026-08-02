@@ -134,3 +134,21 @@ export async function getProductById(id: string | number): Promise<Product | nul
         return null;
     }
 }
+
+export async function deleteProduct(id: string | number) {
+    try {
+        const res = await fetch(`https://dummyjson.com/products/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (!res.ok) {
+            throw new Error(`Failed to delete product ${id}`);
+        }
+
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.error("Error deleting product:", error);
+        throw error;
+    }
+}

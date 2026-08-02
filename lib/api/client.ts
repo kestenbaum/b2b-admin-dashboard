@@ -1,4 +1,7 @@
-const baseUrl = process.env.API_BASE_URL;
+const baseUrl =
+    process.env.NEXT_PUBLIC_API_BASE_URL ||
+    process.env.API_BASE_URL ||
+    "https://dummyjson.com";
 
 if (!baseUrl) {
     throw new Error("API_BASE_URL is not defined in environment variables");
