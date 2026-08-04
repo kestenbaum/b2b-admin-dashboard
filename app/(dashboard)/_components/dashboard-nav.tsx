@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, Package, Users } from "lucide-react";
-import { SheetClose } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
+import { SheetClose } from "@/app/(dashboard)/_components/ui/sheet";
+import { cn } from "@/app/(dashboard)/lib/utils";
 
 const NAV_LINKS = [
     { name: "Overview", href: "/", icon: LayoutDashboard },

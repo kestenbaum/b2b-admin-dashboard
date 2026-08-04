@@ -1,14 +1,14 @@
 "use client";
 
 import { useSearchParams, usePathname } from "next/navigation";
-import { getPaginationRange, buildPageHref } from "@/lib/pagination";
+import { getPaginationRange, buildPageHref } from "@/app/(dashboard)/lib/helpers/pagination";
 import {
     Pagination,
     PaginationLink,
     PaginationEllipsis,
     ChevronLeft,
     ChevronRight,
-} from "@/components/ui/pagination";
+} from "@/app/(dashboard)/_components/ui/pagination";
 
 export function PaginationControls({currentPage, totalPages,}: {
     currentPage: number;

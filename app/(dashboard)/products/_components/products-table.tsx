@@ -8,8 +8,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
+} from "@/app/(dashboard)/_components/ui/table";
+import { Badge } from "@/app/(dashboard)/_components/ui/badge";
 import { Product } from "@/app/(dashboard)/products/lib/api/products";
 
 import Link from "next/link";

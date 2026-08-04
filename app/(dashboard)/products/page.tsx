@@ -1,9 +1,9 @@
 import { getCategories, getProducts } from "@/app/(dashboard)/products/lib/api/products";
-import { clampPage } from "@/lib/pagination";
-import { PaginationControls } from "@/components/pagination-controls";
+import { clampPage } from "@/app/(dashboard)/lib/helpers/pagination";
+import { PaginationControls } from "@/app/(dashboard)/_components/pagination-controls";
 import { ProductsTable } from "@/app/(dashboard)/products/_components/products-table";
 import React from "react";
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from "@/app/(dashboard)/_components/page-header";
 import { ProductsFilters } from "@/app/(dashboard)/products/_components/products-filters";
 import { redirect } from "next/navigation";
 

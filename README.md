@@ -6,28 +6,28 @@ This is a B2B admin dashboard project named TradeMinds, built with Next.js App R
 
 *   **Next.js**: Utilizes the App Router for routing and rendering.
 *   **TypeScript**: Strict mode is enabled for enhanced code quality and type safety.
-*   **Tailwind CSS + shadcn/ui**: For styling and UI components. Note: Do not directly modify files in `components/ui`. Wrap them for customization if needed.
+*   **Tailwind CSS + shadcn/ui**: For styling and UI components. Note: Do not directly modify files in `app/(dashboard)/_components/ui`. Wrap them for customization if needed.
 *   **State Management**: Zustand (not Redux) is used for managing application state.
 
 ## Project Structure
 
 *   **`app/(dashboard)/...`**: Contains dashboard pages, with each feature (e.g., `products`, `users`) organized in its own folder.
-*   **`components/ui`**: Houses base shadcn/ui components (e.g., `button`, `card`, `table`).
-*   **`lib/api`**: This layer handles backend requests, with one file per entity (e.g., `products.ts`, `users.ts`).
-*   **`lib/pagination.ts`**: Contains shared pagination logic, reused across the application.
+*   **`app/(dashboard)/_components/ui`**: Houses base shadcn/ui components (e.g., `button`, `card`, `table`).
+*   **`app/(dashboard)/lib/api`**: This layer handles backend requests, with one file per entity (e.g., `products.ts`, `users.ts`).
+*   **`app/(dashboard)/lib/helpers/pagination.ts`**: Contains shared pagination logic, reused across the application.
 *   **`__tests__`**: Directory for all project tests.
 
 ## Conventions
 
 *   **Components**: Functional components, PascalCase, default export.
 *   **Data/Type Files**: camelCase naming convention.
-*   **Pagination**: Always use `clampPage()` from `lib/pagination.ts`; avoid manual boundary logic in components.
+*   **Pagination**: Always use `clampPage()` from `app/(dashboard)/lib/helpers/pagination.ts`; avoid manual boundary logic in components.
 *   **API Error Handling**: Handled via `error.tsx` boundary (Next.js convention); avoid `try/catch` within page components.
 *   **Styling**: Exclusively Tailwind CSS classes; inline styles are not used.
 
 ## What NOT to do without explicit request
 
-*   Do not directly modify files in `components/ui`.
+*   Do not directly modify files in `app/(dashboard)/_components/ui`.
 *   Do not add new dependencies without explaining the necessity.
 *   Do not rewrite existing pagination or API layer logic for aesthetic reasons.
 *   Do not delete existing tests.
@@ -40,7 +40,7 @@ This is a B2B admin dashboard project named TradeMinds, built with Next.js App R
 ## Before completing a task
 
 *   Run `eslint` / `prettier` before considering the task complete.
-*   If types in `lib/api` are changed, ensure all usages are updated.
+*   If types in `app/(dashboard)/lib/api` are changed, ensure all usages are updated.
 
 ## Component Extraction Guidelines
 

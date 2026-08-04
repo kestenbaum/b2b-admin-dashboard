@@ -7,11 +7,11 @@ import {
     TableHead,
     TableHeader,
     TableRow,
-} from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { User } from "@/lib/api/users";
-import { Input } from "@/components/ui/input";
-import { useDebounce } from "@/lib/hooks/use-debounce";
+} from "@/app/(dashboard)/_components/ui/table";
+import { Badge } from "@/app/(dashboard)/_components/ui/badge";
+import { User } from "@/app/(dashboard)/users/lib/api/users";
+import { Input } from "@/app/(dashboard)/_components/ui/input";
+import { useDebounce } from "@/app/(dashboard)/lib/hooks/use-debounce";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";

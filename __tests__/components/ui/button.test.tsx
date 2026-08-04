@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/(dashboard)/_components/ui/button";
 
 describe("UI Component: Button", () => {
     it("renders children correctly", () => {

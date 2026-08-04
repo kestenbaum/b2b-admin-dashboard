@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/(dashboard)/_components/ui/button";
 
 export default function ProductsError({error, reset}: {
     error: Error & { digest?: string };

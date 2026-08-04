@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { useModal } from "@/components/providers/modal-provider";
+import { useModal } from "@/app/(dashboard)/_components/providers/modal-provider";
 import { ProductFormValues } from "@/app/(dashboard)/products/lib/validations/product";
 import { createProductAction } from "@/app/(dashboard)/products/lib/actions";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/(dashboard)/_components/ui/button";
 import { useRouter } from "next/navigation";
 import { ProductForm } from "@/app/(dashboard)/products/_components/forms/product-form";
 

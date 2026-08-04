@@ -1,4 +1,4 @@
-import { apiFetch } from "@/lib/api/client";
+import { apiFetch } from "@/app/(dashboard)/lib/api/client";
 
 export interface User {
     id: number;

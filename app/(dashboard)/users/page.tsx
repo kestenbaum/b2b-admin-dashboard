@@ -1,9 +1,9 @@
-import { getUsers } from "@/lib/api/users";
-import { clampPage } from "@/lib/pagination";
-import { PaginationControls } from "@/components/pagination-controls";
+import { getUsers } from "@/app/(dashboard)/users/lib/api/users";
+import { clampPage } from "@/app/(dashboard)/lib/helpers/pagination";
+import { PaginationControls } from "@/app/(dashboard)/_components/pagination-controls";
 import UsersTable from "@/app/(dashboard)/users/_components/users-table";
 import { redirect } from "next/navigation";
-import { PageHeader } from "@/components/page-header";
+import { PageHeader } from "@/app/(dashboard)/_components/page-header";
 
 export const dynamic = "force-dynamic";
 

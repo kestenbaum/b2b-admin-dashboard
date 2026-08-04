@@ -1,6 +1,6 @@
 import React from 'react';
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/app/(dashboard)/_components/ui/badge";
+import { Card, CardContent } from "@/app/(dashboard)/_components/ui/card";
 import { Package, Star } from "lucide-react";
 import type { Product } from "@/app/(dashboard)/products/lib/api/products";
 

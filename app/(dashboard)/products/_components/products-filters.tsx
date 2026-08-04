@@ -6,13 +6,13 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+} from "@/app/(dashboard)/_components/ui/select";
+import { Input } from "@/app/(dashboard)/_components/ui/input";
+import { Button } from "@/app/(dashboard)/_components/ui/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { Category } from "@/app/(dashboard)/products/lib/api/products";
-import { useModal } from "@/components/providers/modal-provider";
+import { useModal } from "@/app/(dashboard)/_components/providers/modal-provider";
 import { CreateProductButton } from "@/app/(dashboard)/products/_components/ui/create-product-button";
 
 export function ProductsFilters({ categories }: { categories: Category[] }) {

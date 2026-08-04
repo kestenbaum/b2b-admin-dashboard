@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { apiFetch } from "@/lib/api/client";
+import { apiFetch } from "@/app/(dashboard)/lib/api/client";
 
 process.env.API_BASE_URL = "https://dummyjson.com";
 

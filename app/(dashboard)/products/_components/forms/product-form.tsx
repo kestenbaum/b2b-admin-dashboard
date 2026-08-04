@@ -3,9 +3,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/app/(dashboard)/_components/ui/button";
+import { Input } from "@/app/(dashboard)/_components/ui/input";
+import { Card, CardContent } from "@/app/(dashboard)/_components/ui/card";
 import { ProductFormValues, productSchema } from "@/app/(dashboard)/products/lib/validations/product";
 
 interface ProductFormProps {

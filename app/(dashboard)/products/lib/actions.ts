@@ -1,6 +1,6 @@
 "use server"
 
-import { apiFetch } from "@/lib/api/client"
+import { apiFetch } from "@/app/(dashboard)/lib/api/client"
 import { revalidatePath } from "next/cache"
 import { ProductFormValues } from "@/app/(dashboard)/products/lib/validations/product";
 

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/(dashboard)/_components/ui/card";
 import { Product } from "@/app/(dashboard)/products/lib/api/products";
 
 interface TopDealsProps {

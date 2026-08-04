@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/toaster";
-import { ModalProvider } from "@/components/providers/modal-provider";
+import { Toaster } from "@/app/(dashboard)/_components/toaster";
+import { ModalProvider } from "@/app/(dashboard)/_components/providers/modal-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 

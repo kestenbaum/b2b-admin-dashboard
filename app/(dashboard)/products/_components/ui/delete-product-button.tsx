@@ -1,11 +1,11 @@
 "use client"
 
 import { useTransition } from "react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/app/(dashboard)/_components/ui/button"
 import { Trash2, Loader2 } from "lucide-react"
 
 import { deleteProductAction } from "@/app/(dashboard)/products/lib/actions"
-import { toast } from "@/lib/hooks/use-toast";
+import { toast } from "@/app/(dashboard)/lib/hooks/use-toast";
 
 interface DeleteProductButtonProps {
     id: number | string

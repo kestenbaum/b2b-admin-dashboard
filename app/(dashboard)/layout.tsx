@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 import { Menu, Package } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/app/(dashboard)/_components/ui/button";
 
 import {
     Sheet,
     SheetContent,
     SheetTrigger,
     SheetClose,
-} from "@/components/ui/sheet";
+} from "@/app/(dashboard)/_components/ui/sheet";
 
-import { DesktopNav, MobileNav } from "@/components/dashboard/dashboard-nav";
+import { DesktopNav, MobileNav } from "@/app/(dashboard)/_components/dashboard-nav";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
     return (

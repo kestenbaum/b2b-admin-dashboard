@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Product } from "@/app/(dashboard)/products/lib/api/products";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/app/(dashboard)/_components/ui/card";
 
 interface ProductGalleryProps {
     product: Product;

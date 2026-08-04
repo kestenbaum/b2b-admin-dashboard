@@ -1,7 +1,7 @@
 "use client"
 
 import { X, CheckCircle2 } from "lucide-react"
-import { useToast } from "@/lib/hooks/use-toast";
+import { useToast } from "@/app/(dashboard)/lib/hooks/use-toast";
 
 export function Toaster() {
     const { toasts, dismiss } = useToast()
