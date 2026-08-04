@@ -2,7 +2,8 @@ import { describe, it, expect, vi } from 'vitest';
 import { getUsers } from "@/app/(dashboard)/users/lib/api/users";
 import { apiFetch } from "@/app/(dashboard)/lib/api/client";
 
-vi.mock("@/lib/api/client", () => ({
+
+vi.mock("@/app/(dashboard)/lib/api/client", () => ({
     apiFetch: vi.fn(),
 }));
 
