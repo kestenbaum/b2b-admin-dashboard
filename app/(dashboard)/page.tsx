@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/page-header";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { getUsers } from "@/lib/api/users";
-import { getProducts, getMostExpensiveProduct } from "@/lib/api/products";
+import { getProducts, getMostExpensiveProduct } from "@/app/(dashboard)/products/lib/api/products";
 import { Users, Package, Star, Tags } from "lucide-react";
 import { TopDeals } from "@/components/dashboard/top-deals";
 import { OverviewChart } from "@/components/dashboard/overview-chart";

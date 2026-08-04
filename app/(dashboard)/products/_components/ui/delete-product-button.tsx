@@ -4,7 +4,7 @@ import { useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import { Trash2, Loader2 } from "lucide-react"
 
-import { deleteProductAction } from "@/app/(dashboard)/products/actions"
+import { deleteProductAction } from "@/app/(dashboard)/products/lib/actions"
 import { toast } from "@/lib/hooks/use-toast";
 
 interface DeleteProductButtonProps {

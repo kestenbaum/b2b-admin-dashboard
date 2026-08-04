@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "next/link";
-import type { Product } from "@/lib/api/products";
+import type { Product } from "@/app/(dashboard)/products/lib/api/products";
 
 interface ProductBreadcrumbsProps {
     product: Product;

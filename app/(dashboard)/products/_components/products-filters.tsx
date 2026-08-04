@@ -11,10 +11,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
-import { Category } from "@/lib/api/products";
+import { Category } from "@/app/(dashboard)/products/lib/api/products";
+import { useModal } from "@/components/providers/modal-provider";
+import { CreateProductButton } from "@/app/(dashboard)/products/_components/ui/create-product-button";
 
 export function ProductsFilters({ categories }: { categories: Category[] }) {
     const searchParams = useSearchParams();
+    const { openModal } = useModal()
     const pathname = usePathname();
     const { replace } = useRouter();
 
@@ -92,6 +95,7 @@ export function ProductsFilters({ categories }: { categories: Category[] }) {
                 className="w-full sm:w-32"
             />
             <Button type="submit" className="w-full sm:w-auto">Apply</Button>
+            <CreateProductButton />
         </form>
     );
 }

@@ -10,10 +10,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Product } from "@/lib/api/products";
+import { Product } from "@/app/(dashboard)/products/lib/api/products";
 
 import Link from "next/link";
-import { DeleteProductButton } from "@/app/(dashboard)/products/_components/delete-product-button";
+import { DeleteProductButton } from "@/app/(dashboard)/products/_components/ui/delete-product-button";
 
 interface ProductsTableProps {
   products: Product[];

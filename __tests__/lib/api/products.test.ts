@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { getProducts, getCategories, deleteProduct, getProductById } from "@/lib/api/products";
+import { getProducts, getCategories, deleteProduct, getProductById } from "@/app/(dashboard)/products/lib/api/products";
 import { apiFetch } from "@/lib/api/client";
 
 vi.mock("@/lib/api/client", () => ({

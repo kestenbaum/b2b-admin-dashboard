@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Product } from "@/lib/api/products";
+import { Product } from "@/app/(dashboard)/products/lib/api/products";
 
 interface OverviewChartProps {
     products: Product[];

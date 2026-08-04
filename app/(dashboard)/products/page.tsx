@@ -1,4 +1,4 @@
-import { getCategories, getProducts } from "@/lib/api/products";
+import { getCategories, getProducts } from "@/app/(dashboard)/products/lib/api/products";
 import { clampPage } from "@/lib/pagination";
 import { PaginationControls } from "@/components/pagination-controls";
 import { ProductsTable } from "@/app/(dashboard)/products/_components/products-table";
