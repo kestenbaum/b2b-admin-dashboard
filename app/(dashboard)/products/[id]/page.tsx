@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getProductById, Product } from "@/lib/api/products";
+import { getProductById } from "@/lib/api/products";
 import { PageHeader } from "@/components/page-header";
 import ProductBreadcrumbs from "@/app/(dashboard)/products/[id]/_components/product-breadcrumbs";
 import ProductGallery from "@/app/(dashboard)/products/[id]/_components/product-gallery";
