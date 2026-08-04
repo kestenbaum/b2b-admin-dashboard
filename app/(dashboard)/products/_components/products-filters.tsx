@@ -65,10 +65,10 @@ export function ProductsFilters({ categories }: { categories: Category[] }) {
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                     >
-                        <SelectTrigger className="w-full sm:w-[180px]">
+                        <SelectTrigger className="w-full sm:w-45">
                             <SelectValue placeholder="Category" />
                         </SelectTrigger>
-                        <SelectContent className="max-h-[300px] overflow-y-auto">
+                        <SelectContent className="max-h-75 overflow-y-auto">
                             <SelectItem value="all">All Categories</SelectItem>
                             {uniqueCategories.map((cat) => (
                                 <SelectItem key={cat.slug} value={cat.slug}>
