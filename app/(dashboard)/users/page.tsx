@@ -38,10 +38,10 @@ export default async function UsersPage({searchParams,}: {
   }
 
   return (
-      <div className="space-y-6">
+      <section className="space-y-6">
           <PageHeader title="Users" description="Manage your user accounts." />
-        <UsersTable users={users} />
-        <PaginationControls currentPage={currentPage} totalPages={totalPages} />
-      </div>
+          <UsersTable users={users} />
+          <PaginationControls currentPage={currentPage} totalPages={totalPages} />
+      </section>
   );
 }

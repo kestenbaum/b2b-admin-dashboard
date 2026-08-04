@@ -20,7 +20,7 @@ export default function UsersLoading() {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[80px]">ID</TableHead>
+                            <TableHead className="w-20">ID</TableHead>
                             <TableHead>Full Name</TableHead>
                             <TableHead>Username</TableHead>
                             <TableHead>Email</TableHead>
@@ -31,10 +31,10 @@ export default function UsersLoading() {
                         {Array.from({ length: 5 }).map((_, i) => (
                             <TableRow key={i}>
                                 <TableCell><Skeleton className="h-5 w-8" /></TableCell>
-                                <TableCell><Skeleton className="h-5 w-[150px]" /></TableCell>
-                                <TableCell><Skeleton className="h-5 w-[100px] rounded-full" /></TableCell>
-                                <TableCell><Skeleton className="h-5 w-[200px]" /></TableCell>
-                                <TableCell className="text-right"><Skeleton className="ml-auto h-5 w-[120px]" /></TableCell>
+                                <TableCell><Skeleton className="h-5 w-37.5" /></TableCell>
+                                <TableCell><Skeleton className="h-5 w-25 rounded-full" /></TableCell>
+                                <TableCell><Skeleton className="h-5 w-50" /></TableCell>
+                                <TableCell className="text-right"><Skeleton className="ml-auto h-5 w-30" /></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
