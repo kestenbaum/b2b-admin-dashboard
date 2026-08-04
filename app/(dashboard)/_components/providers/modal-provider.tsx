@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 interface ModalContextType {
     openModal: (content: ReactNode, title?: string) => void;
@@ -26,33 +26,46 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         setTitle(undefined);
     };
 
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [isOpen]);
+
     return (
         <ModalContext.Provider value={{ openModal, closeModal }}>
             {children}
 
             {isOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center">
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-0">
                     <div
                         className="absolute inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
                         onClick={closeModal}
                     />
 
-                    <div className="relative z-10 w-full max-w-lg rounded-xl border bg-background p-6 shadow-xl animate-in fade-in zoom-in-95 duration-200">
-                        <div className="flex items-center justify-between pb-4 mb-4 border-b">
-                            {title ? (
-                                <h2 className="text-lg font-semibold">{title}</h2>
-                            ) : (
-                                <div />
-                            )}
-                            <button
-                                onClick={closeModal}
-                                className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-md"
-                            >
-                                ✕
-                            </button>
+                    <div className="relative z-10 w-full max-w-lg rounded-xl border bg-background shadow-xl animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
+                        <div className="sticky top-0 z-20 border-b bg-background p-6 pb-4">
+                            <div className="flex items-center justify-between">
+                                {title ? (
+                                    <h2 className="text-lg font-semibold">{title}</h2>
+                                ) : (
+                                    <div />
+                                )}
+                                <button
+                                    onClick={closeModal}
+                                    className="rounded-md p-1 text-muted-foreground transition-colors hover:text-foreground"
+                                >
+                                    ✕
+                                </button>
+                            </div>
                         </div>
 
-                        <div>{content}</div>
+                        <div className="p-6 pt-4">{content}</div>
                     </div>
                 </div>
             )}
