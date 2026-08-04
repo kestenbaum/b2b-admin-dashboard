@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/app/(dashboard)/_components/ui/button";
 import { Input } from "@/app/(dashboard)/_components/ui/input";
 import { Card, CardContent } from "@/app/(dashboard)/_components/ui/card";
-import { ProductFormValues, productSchema } from "@/app/(dashboard)/products/lib/validations/product";
+import { ProductFormValues, productSchema } from "@/app/(dashboard)/products/_components/forms/validations/product";
 
 interface ProductFormProps {
     initialData?: ProductFormValues;
@@ -20,17 +20,17 @@ export function ProductForm({ initialData, onSubmit, isLoading }: ProductFormPro
         handleSubmit,
         formState: { errors },
     } = useForm<ProductFormValues>({
-        resolver: zodResolver(productSchema) as any,
+        resolver: zodResolver(productSchema),
         defaultValues: initialData || {
             title: "",
-            price: undefined,
+            price: 0,
             category: "",
             description: "",
             thumbnail: "",
-            discountPercentage: undefined,
+            discountPercentage: 0,
             brand: "",
-            stock: undefined,
-            weight: undefined,
+            stock: 0,
+            weight: 0,
             sku: "",
         },
     });

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useModal } from "@/app/(dashboard)/_components/providers/modal-provider";
-import { ProductFormValues } from "@/app/(dashboard)/products/lib/validations/product";
+import { ProductFormValues } from "@/app/(dashboard)/products/_components/forms/validations/product";
 import { createProductAction } from "@/app/(dashboard)/products/lib/actions";
 import { Button } from "@/app/(dashboard)/_components/ui/button";
 import { useRouter } from "next/navigation";

@@ -2,7 +2,7 @@
 
 import { apiFetch } from "@/app/(dashboard)/lib/api/client"
 import { revalidatePath } from "next/cache"
-import { ProductFormValues } from "@/app/(dashboard)/products/lib/validations/product";
+import { ProductFormValues } from "@/app/(dashboard)/products/_components/forms/validations/product";
 
 export async function deleteProductAction(id: number | string) {
     try {
