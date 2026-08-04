@@ -21,8 +21,6 @@ const ProductGallery = ({ product }: ProductGalleryProps) => {
                             />}
                     </CardContent>
                 </Card>
-
-                <ProductGallery product={product} />
             </div>
             <div>
                 {product.images && product.images.length > 1 && (
